@@ -1,18 +1,30 @@
-type Query {
-  courses: [Course!]
+type Video {
+  id: ID!
+  title: String!
+  description: String
+  youtubeLink: String!
+}
+
+type Class {
+    id: ID!
+    name: String!
+    description : String
+    courses: [Course!]
 }
 
 type Course {
   id: ID!
   title: String!
   description: String
-  date: String
-  class: Class
+  date: String!
+  class: Class!
+  videos: [Video]!
+}
+
+type Query {
+  course(id: ID!) : Course
+  courses: [Course!]
+  class(id: ID!) : Class
 }
 
 
-type Class {
-    id: ID!
-    name: String!
-    description : String
-}

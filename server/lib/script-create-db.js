@@ -100,21 +100,21 @@ await knex.table('video').insert([
     courseId: 'f3YzmnBZpK0o',
     title: 'Видео - 1',
     description: 'Видео тайлбар 1',
-    youtubeLink: 'https://www.youtube.com/watch?v=example1',
+    youtubeLink: 'https://www.youtube.com/watch?v=yWzKJPw_VzM',
   },
   {
     id: '2',
     courseId: 'XYZNJMXFax6n',
     title: 'Видео - 2',
     description: 'Видео тайлбар 2',
-    youtubeLink: 'https://www.youtube.com/watch?v=example2',
+    youtubeLink: 'https://www.youtube.com/watch?v=yWzKJPw_VzM',
   },
   {
     id: '3',
     courseId: '6mA05AZxvS1R',
     title: 'Видео - 3',
     description: 'Видео тайлбар 3',
-    youtubeLink: 'https://www.youtube.com/watch?v=example3',
+    youtubeLink: 'https://www.youtube.com/watch?v=yWzKJPw_VzM',
   },
 ]);
 
