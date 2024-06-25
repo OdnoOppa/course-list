@@ -1,0 +1,18 @@
+type Query {
+  courses: [Course!]
+}
+
+type Course {
+  id: ID!
+  title: String!
+  description: String
+  date: String
+  class: Class
+}
+
+
+type Class {
+    id: ID!
+    name: String!
+    description : String
+}
