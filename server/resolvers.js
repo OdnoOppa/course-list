@@ -4,6 +4,8 @@ import {
     getCourses,
     getCoursesByClassId,
     createCourse,
+    deleteCourse,
+    updateCourse,
 } from "./controllers/courses.js";
 import { getClassById } from "./controllers/class.js";
 import { getVideosByCourseId } from "./controllers/videos.js";
@@ -15,6 +17,10 @@ export const resolvers = {
             const classId = "FjcJCHJALA4i";
             return createCourse(classId, title, description);
         },
+        deleteCourse: (root, { id }) =>  deleteCourse(id),
+        updateCourse: (root, {input: {id, title, description}}) =>
+            updateCourse({id, title, description}),
+    
     },
 
 /*

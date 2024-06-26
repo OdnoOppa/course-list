@@ -5,23 +5,31 @@ type Video {
   youtubeLink: String!
 }
 
-#type Mutation {
-#  createCourse(title: String!, description: String): Course
-#}
+type Mutation {
+  createCourse(input: CreateCourseInput!): Course
+  deleteCourse(id: String!): Course
+  updateCourse(input: UpdateCourseInput): Course
+}
+
+
+input UpdateCourseInput {
+  id: String!
+  title: String
+  description: String
+}
 
 type Mutation {
   createCourse(input: CreateCourseInput!): Course
 }
 
+#type Mutation {
+#  createCourse(title: String!, description: String): Course
+#}
+
 input CreateCourseInput {
   title: String!
   description: String
 }
-
-
-#type Mutation {
-#  createCourse(input: CreateCourseInput!): Course
-#}
 
 #input CreateCourseInput {
 #  title: String!
@@ -30,7 +38,7 @@ input CreateCourseInput {
 
 
 type Class {
-    id: ID!
+    id: String!
     name: String!
     description : String
     courses: [Course!]
