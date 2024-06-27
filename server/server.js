@@ -1,4 +1,5 @@
 import { ApolloServer } from "@apollo/server";
+import { authenticationMiddleware } from "./authentication.js";
 import { expressMiddleware as apolloExpressMiddleware } from "@apollo/server/express4";
 import { readFile } from "node:fs/promises";
 import cors from "cors";
@@ -14,18 +15,32 @@ const PORT = 9000;
 const app = express();
 
 app.use(
-  cors({
-    origin: ["http://localhost:3000", "http://1234.mn"],
-  }),
-  express.json()
+  cors({ origin: ["http://localhost:3000", "http://1234.mn"] }),
+  express.json(),
+  authenticationMiddleware,
+  (req, res, next) => {
+    console.log("++++++++++++++", req.auth);
+    return next();
+  }
 );
+
+
+
+
+
 app.post("/login", handleLogin);
 
 const typeDefs = await readFile("./schema.graphql", "utf8");
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 await apolloServer.start();
 
-app.use("/graphql", apolloExpressMiddleware(apolloServer));
+app.use(
+  "/graphql", apolloExpressMiddleware(apolloServer, 
+    {context: ({ req }) => {
+  return { auth: req.auth };
+},
+})
+);
 
 app.listen({ port: PORT }, () => {
   console.log(`Express сэрвэр ажиллаж байна: http://localhost:${PORT}`);
