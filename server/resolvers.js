@@ -14,7 +14,7 @@ export const resolvers = {
     Mutation: {
       createCourse: (root, { input: { title, description } }, { user }) => {
         if (!user) {
-          throwUnauthenicated(`Зарыг үүсгэхийн тулд та логин хийсэн байх ёстой!`);
+          throwUnauthenicated(`Хичээл нэмэхийн тулд та логин хийсэн байх ёстой!`);
         }
         return createCourse(user.classId, title, description);
       },
